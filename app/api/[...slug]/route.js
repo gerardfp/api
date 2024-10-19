@@ -6,12 +6,19 @@ export async function GET(request, { params }) {
     let element = params.slug.shift();
     
     if (element === 'w') {
-        delay = 5000;
-        element = params.slug.shift();
+        delay = ri(1000,5000);
+        
         if (!isNaN(params.slug[0])) {
             delay = params.slug.shift();
-            if (delay > 30000) delay = 30000;
         }
+        if (!isNaN(params.slug[0])) {
+            delay = ri(delay, params.slug.shift());
+        }
+        if (delay > 30000) {
+            delay = 30000;
+        }
+
+        element = params.slug.shift();
     }
     
     let r = '';
