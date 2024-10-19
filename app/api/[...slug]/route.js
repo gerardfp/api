@@ -7,7 +7,7 @@ export function GET(request, { params }) {
  
   if (element === 'w') {
     delay = 5000;
-    element = params.slug[0]
+    element = params.slug[1];
   }
  
   let r = '';
@@ -24,7 +24,7 @@ export function GET(request, { params }) {
       for(let i = 0; i < 16; i++)
         r += characters.charAt(Math.floor(Math.random() * characters.length));
       break;
-    case 'moon';
+    case 'moon':
       const icons = ["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"];
       r = icons[Math.floor(Math.random()*icons.length)];
       break;
