@@ -51,21 +51,33 @@ export async function GET(request, { params }) {
         break;
     case 'date':
     case 'datetime':
-        let startDate = new Date(1975,8,1);
+    case 'time':
+        let startDate = new Date(1970,1,1);
         let endDate = new Date();
             
         if (params.slug[0] !== undefined) {
-            endDate = new Date(params.slug.shift());
+            if (element === 'time') {
+                endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+            } else {
+                endDate = new Date(params.slug.shift());
+            }
         }
         if (params.slug[0] !== undefined) {
             startDate = endDate;
-            endDate = new Date(params.slug.shift());
+            if (element === 'time') {
+                endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+            } else {
+                endDate = new Date(params.slug.shift());
+            }
         }
+
         let date = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
         if (element === 'date') {
             r = date.toLocaleDateString("es-ES");
-        } else {
+        } else if (element === 'datetime'){
             r = date.toLocaleString("es-ES"); 
+        } else {
+            r = date.toLocaleTimeString("es-ES");
         }
         break;
     case 'moon':
