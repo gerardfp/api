@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic'; // static by default, unless reading the request
  
-export function GET(request, { params }) {
+export async function GET(request, { params }) {
 
   let delay = 0;
   let element = params.slug[0];
