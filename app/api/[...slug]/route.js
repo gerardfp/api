@@ -52,7 +52,7 @@ export async function GET(request, { params }) {
         break;
     case 'date':
         let startDate = new Date(1975,8,1);
-        let endDate = Date.now();
+        let endDate = new Date();
             
         if (params.slug[0] !== undefined) {
             endDate = new Date(params.slug.shift());
