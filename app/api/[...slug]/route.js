@@ -51,22 +51,18 @@ export async function GET(request, { params }) {
             r += characters.charAt(ri(characters.length));
         break;
     case 'date':
-        let startDate = "1975-08-01";
-        let endDate = Date.now().toDateString();
+        let startDate = new Date(1975,8,1);
+        let endDate = Date.now();
             
         if (params.slug[0] !== undefined) {
-            endDate = params.slug.shift();
+            endDate = new Date(params.slug.shift());
         }
         if (params.slug[0] !== undefined) {
             startDate = endDate;
-            endDate = params.slug.shift();
+            endDate = new Date(params.slug.shift());
         }
-
-        const start = new Date(startDate).getTime();
-        const end = new Date(endDate).getTime();
         
-        r = new Date(Math.random() * (end - start) + start);
-    
+        r = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
         break;
     case 'moon':
         r = re(["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"]);
