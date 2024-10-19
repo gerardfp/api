@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
  
   switch (element) {
     case 'integer':
-      r = Math.floor(Math.random() * 2000000);
+      r = ri(2000000);
       break;
     case 'float':
       r = Math.random();
@@ -22,17 +22,16 @@ export async function GET(request, { params }) {
     case 'string':
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
       for(let i = 0; i < 16; i++)
-        r += characters.charAt(Math.floor(Math.random() * characters.length));
+        r += characters.charAt(ri(characters.length));
       break;
     case 'moon':
       r = re(["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"]);
       break;
     case 'weather':
-      const weathers = ["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"];
-      r = weathers[Math.floor(Math.random()*weathers.length)];
+      r = re(["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"]);
       break;
     case 'wind':
-      r = "💨 " + Math.floor(Math.random() * 200) + " km/h";
+      r = "💨 " + ri(200) + " km/h";
       break;
     default:
       r = 'Hello world';
@@ -47,5 +46,15 @@ export async function GET(request, { params }) {
 
 
 function re(a) {
-  return a[Math.floor(Math.random()*a.length)];
+  return a[ri(a.length)];
+}
+
+function ri(max) {
+  return ri(0,max);
+}
+
+function ri(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
