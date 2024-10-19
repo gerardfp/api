@@ -42,7 +42,6 @@ export async function GET(request, { params }) {
         } else {
             r = rf(min, max);
         }
-    
         break;
     case 'string':
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -63,10 +62,10 @@ export async function GET(request, { params }) {
             endDate = new Date(params.slug.shift());
         }
         let date = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
-        if (element === 'date) {
+        if (element === 'date') {
             r = date.toLocaleDateString("es-ES");
         } else {
-            r = date.toLocaleString("es-ES");
+            r = date.toLocaleString("es-ES"); 
         }
         break;
     case 'moon':
