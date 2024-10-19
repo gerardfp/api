@@ -11,13 +11,26 @@ export async function GET(request, { params }) {
   }
  
   let r = '';
- 
-  switch (element) {
+
+  switch (element){
     case 'integer':
-      r = ri(2000000);
-      break;
-    case 'float':
-      r = Math.random();
+    case 'float:
+      let min = 0;
+      let max = element === 'integer' ? 2000000 : 1;
+    
+      try {
+        max = params.slug[2];
+    
+        try {
+          aux = params.slug[3];
+          min = max;
+          max = aux;
+        } catch {}
+      } catch {}
+    
+      if (element === 'integer') r = ri(min, max);
+      else r = rf(min, max);
+
       break;
     case 'string':
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -57,4 +70,12 @@ function ri(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+}
+
+function rf(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
+  return Math.random() * (max - min) + min;
 }
