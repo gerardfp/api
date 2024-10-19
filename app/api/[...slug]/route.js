@@ -64,7 +64,7 @@ export async function GET(request, { params }) {
     }
     
     if (delay > 0) {
-        await new Promise(r => setTimeout(r, 5000));
+        await new Promise(r => setTimeout(r, delay));
     }
     
     return new Response(r);
