@@ -27,10 +27,8 @@ export async function GET(request, { params }) {
       }
         
       if (element === 'integer'){
-        console.log(`generating ${min} and ${max}`);
         r = ri(min, max);
       } else {
-        console.log(`generating float ${min} and ${max}`);
         r = rf(min, max);
       }
 
@@ -82,6 +80,5 @@ function rf(min, max) {
   }
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
-
-  return Math.random() * (maxFloored - minCeiled) + minCeiled);
+  return Math.random() * (maxFloored - minCeiled) + minCeiled;
 }
