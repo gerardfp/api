@@ -49,11 +49,11 @@ function re(a) {
   return a[ri(a.length)];
 }
 
-function ri(max) {
-  return ri(0,max);
-}
-
 function ri(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
