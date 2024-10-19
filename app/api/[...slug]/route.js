@@ -71,6 +71,8 @@ export async function GET(request, { params }) {
             }
         }
 
+        console.log(`date ${startDate.toLocaleString("es-ES")} and ${endDate.toLocaleString("es-ES")}`);
+
         let date = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
         if (element === 'date') {
             r = date.toLocaleDateString("es-ES");
