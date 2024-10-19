@@ -35,7 +35,8 @@ export async function GET(request, { params }) {
         break;
     case 'string':
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        for(let i = 0; i < 16; i++)
+        const length = params.slug[0] !== undefined ? params.slug.shift() : 16;
+        for(let i = 0; i < length; i++)
             r += characters.charAt(ri(characters.length));
         break;
     case 'moon':
