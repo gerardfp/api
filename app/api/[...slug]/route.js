@@ -22,12 +22,17 @@ export async function GET(request, { params }) {
         max = params.slug.shift();
       }
       if (params.slug[0] !== undefined) {
-        min = max
+        min = max;
         max = params.slug.shift();
       }
         
-      if (element === 'integer') r = ri(min, max);
-      else r = rf(min, max);
+      if (element === 'integer'){
+        console.log(`generating ${min} and ${max}`);
+        r = ri(min, max);
+      } else {
+        console.log(`generating float ${min} and ${max}`);
+        r = rf(min, max);
+      }
 
       break;
     case 'string':
