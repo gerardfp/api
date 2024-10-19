@@ -52,7 +52,7 @@ export async function GET(request, { params }) {
     case 'date':
     case 'datetime':
     case 'time':
-        let startDate = new Date(1970,1,1);
+        let startDate = new Date("1970-01-01T00:00:00");
         let endDate = new Date();
             
         if (params.slug[0] !== undefined) {
