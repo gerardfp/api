@@ -51,6 +51,7 @@ export async function GET(request, { params }) {
             r += characters.charAt(ri(characters.length));
         break;
     case 'date':
+    case 'datetime':
         let startDate = new Date(1975,8,1);
         let endDate = new Date();
             
@@ -61,8 +62,12 @@ export async function GET(request, { params }) {
             startDate = endDate;
             endDate = new Date(params.slug.shift());
         }
-        
-        r = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
+        let date = new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
+        if (element === 'date) {
+            r = date.toLocaleDateString("es-ES");
+        } else {
+            r = date.toLocaleString("es-ES");
+        }
         break;
     case 'moon':
         r = re(["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"]);
