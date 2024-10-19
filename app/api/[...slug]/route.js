@@ -25,8 +25,7 @@ export async function GET(request, { params }) {
         r += characters.charAt(Math.floor(Math.random() * characters.length));
       break;
     case 'moon':
-      const moons = ["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"];
-      r = moons[Math.floor(Math.random()*moons.length)];
+      r = re(["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"]);
       break;
     case 'weather':
       const weathers = ["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"];
@@ -44,4 +43,9 @@ export async function GET(request, { params }) {
   }
  
   return new Response(r);
+}
+
+
+function re(a) {
+  return a[Math.floor(Math.random()*a.length)];
 }
