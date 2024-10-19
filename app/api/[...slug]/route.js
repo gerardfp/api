@@ -3,11 +3,11 @@ export const dynamic = 'force-dynamic'; // static by default, unless reading the
 export async function GET(request, { params }) {
 
   let delay = 0;
-  let element = params.slug[0];
+  let element = params.slug.shift();
  
   if (element === 'w') {
     delay = 5000;
-    element = params.slug[1];
+    element = params.slug.shift();
   }
  
   let r = '';
@@ -17,17 +17,15 @@ export async function GET(request, { params }) {
     case 'float':
       let min = 0;
       let max = element === 'integer' ? 2000000 : 1;
-    
-      try {
-        max = params.slug[2];
-    
-        try {
-          aux = params.slug[3];
-          min = max;
-          max = aux;
-        } catch {}
-      } catch {}
-    
+      
+      if (params.slug[0] !== undefined) {
+        max = params.slug.shift();
+      }
+      if (params.slug[0] !== undefined) {
+        min = max
+        max = params.slug.shift();
+      }
+        
       if (element === 'integer') r = ri(min, max);
       else r = rf(min, max);
 
