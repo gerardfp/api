@@ -64,7 +64,7 @@ function re(a) {
 }
 
 function ri(min, max) {
-    return Math.floor(min, max);
+    return Math.floor(rf(min, max));
 }
 
 function rf(min, max) {
