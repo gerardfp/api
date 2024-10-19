@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
 
   switch (element){
     case 'integer':
-    case 'float:
+    case 'float':
       let min = 0;
       let max = element === 'integer' ? 2000000 : 1;
     
