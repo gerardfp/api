@@ -80,6 +80,8 @@ function rf(min, max) {
     max = min;
     min = 0;
   }
- console.log(`now generating float ${min} and ${max}`);
-  return Math.random() * (max - min) + min;
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+
+  return Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
