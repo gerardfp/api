@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
     if (element === 'w') {
         delay = 5000;
         element = params.slug.shift();
-        if (!isNan(params.slug[0])) {
+        if (!isNaN(params.slug[0])) {
             delay = params.slug.shift();
             if (delay > 30000) delay = 30000;
         }
