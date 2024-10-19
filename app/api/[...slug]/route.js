@@ -25,12 +25,12 @@ export async function GET(request, { params }) {
         r += characters.charAt(Math.floor(Math.random() * characters.length));
       break;
     case 'moon':
-      const icons = ["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"];
-      r = icons[Math.floor(Math.random()*icons.length)];
+      const moons = ["🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔"];
+      r = moons[Math.floor(Math.random()*moons.length)];
       break;
     case 'weather':
-      const icons = ["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"];
-      r = icons[Math.floor(Math.random()*icons.length)];
+      const weathers = ["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"];
+      r = weathers[Math.floor(Math.random()*weathers.length)];
       break;
     case 'wind':
       r = "💨 " + Math.floor(Math.random() * 200) + " km/h";
