@@ -56,18 +56,27 @@ export async function GET(request, { params }) {
         let endDate = new Date();
             
         if (params.slug[0] !== undefined) {
-            if (element === 'time') {
-                endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+            if (params.slug[0] === 'now') {
+                startDate = endDate;
+                params.slug.shift();
             } else {
-                endDate = new Date(params.slug.shift());
+                if (element === 'time') {
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+                } else {
+                    endDate = new Date(params.slug.shift());
+                }
             }
         }
         if (params.slug[0] !== undefined) {
             startDate = endDate;
-            if (element === 'time') {
-                endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+            if (params.slug[0] === 'now') {
+                params.slug.shift();
             } else {
-                endDate = new Date(params.slug.shift());
+                if (element === 'time') {
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+                } else {
+                    endDate = new Date(params.slug.shift());
+                }
             }
         }
 
