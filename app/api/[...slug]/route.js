@@ -84,7 +84,7 @@ export async function GET(request, { params }) {
 
         let date = startDate == endDate ? startDate : new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
 
-        date = new Date(date.getTime() + 3600000 - date.getTimezoneOffset()); // convert to gmt+0100 (central europe)
+        date = new Date(date.getTime() + 3600000 - date.getTimezoneOffset() * -60000); // convert to gmt+0100 (central europe)
 
         if (element === 'date') {
             r = date.toLocaleDateString("es-ES");
