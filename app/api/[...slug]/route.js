@@ -53,12 +53,12 @@ export async function GET(request, { params }) {
     case 'datetime':
     case 'time':
         // determina si estem en horari standard o d'estiu
-        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(date).find(p => p.type==='timeZoneName').value) === 'CEST' ? 2 : 1;
+        let endDate = new Date();
+        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'CEST' ? 2 : 1;
+        endDate = new Date(endDate.getTime() + 3600000*cetOffsetHours - endDate.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
 
         let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
-        let endDate = new Date();
-        endDate = new Date(endDate.getTime() + 3600000*cetOffsetHours - endDate.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
-            
+                    
         if (params.slug[0] !== undefined) {
             if (params.slug[0] === 'now') {
                 startDate = endDate;
