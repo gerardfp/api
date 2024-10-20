@@ -53,22 +53,24 @@ export async function GET(request, { params }) {
     case 'datetime':
     case 'time':
         // determina si estem en horari standard o d'estiu
-        let endDate = new Date();
-        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'GMT+2' ? 2 : 1;
+        let now = new Date();
+        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(now).find(p => p.type==='timeZoneName').value) === 'GMT+2' ? 2 : 1;
 
         console.log(`cetoffset ${cetOffsetHours}`);
 
-        endDate = new Date(endDate.getTime() + 3600000*cetOffsetHours - endDate.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
+        now = new Date(now.getTime() + 3600000*cetOffsetHours - now.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
 
         let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
-                    
+        let endDate = now;
+
+        
         if (params.slug[0] !== undefined) {
             if (params.slug[0] === 'now') {
-                startDate = endDate;
+                startDate = now;
                 params.slug.shift();
             } else {
                 if (element === 'time') {
-                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
                 } else {
                     endDate = new Date(params.slug.shift());
                 }
@@ -77,10 +79,11 @@ export async function GET(request, { params }) {
         if (params.slug[0] !== undefined) {
             startDate = endDate;
             if (params.slug[0] === 'now') {
+                endDate = now;
                 params.slug.shift();
             } else {
                 if (element === 'time') {
-                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
                 } else {
                     endDate = new Date(params.slug.shift());
                 }
