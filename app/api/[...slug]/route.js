@@ -57,7 +57,7 @@ export async function GET(request, { params }) {
         const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'CEST' ? 2 : 1;
 
         console.log(`cetoffset ${cetOffsetHours}`);
-        
+
         endDate = new Date(endDate.getTime() + 3600000*cetOffsetHours - endDate.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
 
         let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
@@ -87,7 +87,7 @@ export async function GET(request, { params }) {
             }
         }
 
-        console.log(`date ${startDate.toLocaleString("es-ES")} and ${endDate.toLocaleString("es-ES")}`);
+        console.log(`date ${startDate} and ${endDate}`);
 
         let date = startDate == endDate ? startDate : new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
 
