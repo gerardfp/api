@@ -54,7 +54,7 @@ export async function GET(request, { params }) {
     case 'time':
         // determina si estem en horari standard o d'estiu
         let endDate = new Date();
-        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'CEST' ? 2 : 1;
+        const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'GMT+2' ? 2 : 1;
 
         console.log(`cetoffset ${cetOffsetHours}`);
 
