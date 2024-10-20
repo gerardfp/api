@@ -81,6 +81,9 @@ export async function GET(request, { params }) {
             if (params.slug[0] === 'now') {
                 endDate = now;
                 params.slug.shift();
+                if (element === 'time') {
+                    startDate = new Date(`${now.toISOString().split("T")[0]}T${startDate.toISOString().split("T")[0]}+0${cetOffsetHours}:00`
+                }
             } else {
                 if (element === 'time') {
                     endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
