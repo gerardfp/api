@@ -81,7 +81,7 @@ export async function GET(request, { params }) {
         }
 
         console.log(`date ${startDate.toLocaleString("es-ES")} and ${endDate.toLocaleString("es-ES")}`);
-        console.log(`off ${date.getTimezoneOffset()}`);
+        console.log(`tzo ${date.getTimezoneOffset()}`);
         console.log(`date ${date}`);
 
         let date = startDate == endDate ? startDate : new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
