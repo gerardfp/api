@@ -84,7 +84,7 @@ export async function GET(request, { params }) {
 
         let date = startDate == endDate ? startDate : new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
 
-        console.log(`tzo ${date.getTimezoneOffset()}`);
+        //console.log(`tzo ${date.getTimezoneOffset()}`);
         console.log(`date ${date}`);
 
         date = new Date(date.getTime() + 3600000 - date.getTimezoneOffset() * 60000); // convert to gmt+0100 (central europe)
