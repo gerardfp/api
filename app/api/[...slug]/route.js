@@ -55,6 +55,9 @@ export async function GET(request, { params }) {
         // determina si estem en horari standard o d'estiu
         let endDate = new Date();
         const cetOffsetHours = (new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(endDate).find(p => p.type==='timeZoneName').value) === 'CEST' ? 2 : 1;
+
+        console.log(`cetoffset ${cetOffsetHours}`);
+        
         endDate = new Date(endDate.getTime() + 3600000*cetOffsetHours - endDate.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
 
         let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
