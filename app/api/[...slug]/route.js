@@ -63,7 +63,8 @@ export async function GET(request, { params }) {
         let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
         let endDate = now;
 
-        
+        console.log(`0 date ${startDate} and ${endDate}`);
+
         if (params.slug[0] !== undefined) {
             if (params.slug[0] === 'now') {
                 startDate = now;
@@ -76,6 +77,9 @@ export async function GET(request, { params }) {
                 }
             }
         }
+
+        console.log(`1 date ${startDate} and ${endDate}`);
+
         if (params.slug[0] !== undefined) {
             startDate = endDate;
             if (params.slug[0] === 'now') {
@@ -93,7 +97,7 @@ export async function GET(request, { params }) {
             }
         }
 
-        console.log(`date ${startDate} and ${endDate}`);
+        console.log(`2 date ${startDate} and ${endDate}`);
 
         let date = startDate == endDate ? startDate : new Date(Math.random() * (endDate.getTime() - startDate.getTime()) + startDate.getTime());
 
