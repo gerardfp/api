@@ -82,7 +82,7 @@ export async function GET(request, { params }) {
                 endDate = now;
                 params.slug.shift();
                 if (element === 'time') {
-                    startDate = new Date(`${now.toISOString().split("T")[0]}T${startDate.toISOString().split("T")[0]}+0${cetOffsetHours}:00`);
+                    startDate = new Date(`${now.toISOString().split("T")[0]}T${startDate.toISOString().split("T")[1]}+0${cetOffsetHours}:00`);
                 }
             } else {
                 if (element === 'time') {
