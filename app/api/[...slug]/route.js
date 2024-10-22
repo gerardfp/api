@@ -129,7 +129,7 @@ export async function GET(request, { params }) {
         r = "💨 " + ri(200) + " km/h";
         break;
     default:
-        r = 'Hello world';
+        r = 'https://github.com/gerardfp/api';
     }
     
     if (delay > 0) {
