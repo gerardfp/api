@@ -60,7 +60,8 @@ export async function GET(request, { params }) {
 
         now = new Date(now.getTime() + 3600000*cetOffsetHours - now.getTimezoneOffset() * 60000); // convert to gmt+0100 o gmt+0200 (central europe CET CEST)
 
-        let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
+        //let startDate = new Date(`1970-01-01T00:00:00+0${cetOffsetHours}:00`);
+        let startDate = new Date(`1970-01-01T00:00:00`);
         let endDate = now;
 
         console.log(`0 date ${startDate} and ${endDate}`);
@@ -71,7 +72,8 @@ export async function GET(request, { params }) {
                 params.slug.shift();
             } else {
                 if (element === 'time') {
-                    endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
+                    //endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
                 } else {
                     endDate = new Date(params.slug.shift());
                 }
@@ -90,7 +92,8 @@ export async function GET(request, { params }) {
                 }
             } else {
                 if (element === 'time') {
-                    endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
+                    //endDate = new Date(`1970-01-01T${params.slug.shift()}+0${cetOffsetHours}:00`);
+                    endDate = new Date(`1970-01-01T${params.slug.shift()}`);
                 } else {
                     endDate = new Date(params.slug.shift());
                 }
