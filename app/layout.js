@@ -1,9 +1,9 @@
-export default function AppLayout({
-    children, // 
-  }) {
+export default function RootLayout({ children }) {
     return (
-        <>
-        {children}
-        </>
+      <html lang="en">
+        <body>
+          <main>{children}</main>
+        </body>
+      </html>
     )
   }
