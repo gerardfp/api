@@ -128,6 +128,8 @@ export async function GET(request, { params }) {
     case 'wind':
         r = "💨 " + ri(200) + " km/h";
         break;
+    case 'temperature':
+        r = " "
     default:
         r = 'https://github.com/gerardfp/api';
     }
