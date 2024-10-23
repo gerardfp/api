@@ -126,7 +126,7 @@ export async function GET(request, { params }) {
         r = re(["☀️","🌤","⛅️","🌥","☁️","🌦","🌧","⛈","🌩","🌨"]);
         break;
     case 'wind':
-        r = "💨 " + ri(200) + " km/h";
+        r = "💨 " + ri(200) + " km/h"; 
         break;
     case 'temperature':
         r = " "
