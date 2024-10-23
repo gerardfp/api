@@ -129,7 +129,8 @@ export async function GET(request, { params }) {
         r = "💨 " + ri(200) + " km/h"; 
         break;
     case 'temperature':
-        r = " "
+        r = "🌡 " + ri(-55,55) + " ºC";
+        break;
     default:
         r = 'https://github.com/gerardfp/api';
     }
